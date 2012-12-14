@@ -16,10 +16,10 @@ Attribute setter/getter component.
 
 ### Attribute(obj)
 
-  The `Attribute` must be used as a mixin.
-  A "plain" object may gain Attribute capabilities,
-  or you may extend an existing prototype.
-  `Attribute`-d objects become [Emitters](https://github.com/component/emitter).
+  The `Attribute` must be used as a mixin.  
+  A "plain" object may gain Attribute capabilities,  
+  or you may extend an existing prototype.  
+  `Attribute`-d objects become [Emitters](https://github.com/component/emitter).  
 
   As a mixin:
 
@@ -40,14 +40,14 @@ Attribute(User.prototype);
 
 ### Attribute#get(attribute)
 
-  Return `attribute` value
+  Return `attribute` value.
 
 ### Attribute#set(name_or_obj, value)
 
-  Set `name / value` attribute pair.
-  If an object is passed, set all the `name / value` pairs.
-  Emit `change` event.
-  Emit `chage:[attribute]` event for each attribute setted.
+  Set `name / value` attribute pair.  
+  If an object is passed, set all the `name / value` pairs.  
+  Emit `change` event.  
+  Emit `chage:[attribute]` event for each attribute setted.  
 
 ## License
 
