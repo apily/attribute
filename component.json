@@ -1,0 +1,22 @@
+{
+  "name": "attribute",
+  "repo": "apily/attribute",
+  "description": "Attribute setter/getter component",
+  "version": "0.0.0",
+  "keywords": [
+    "model",
+    "attribute",
+    "change",
+    "event"
+  ],
+  "dependencies": {
+    "component/emitter": "*",
+    "component/each": "*",
+  },
+  "development": {},
+  "scripts": [
+    "index.js"
+  ],
+  "main": "index.js",
+  "license": "MIT"
+}
