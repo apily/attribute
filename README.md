@@ -6,6 +6,12 @@ Attribute setter/getter component.
 
     $ npm install attribute
 
+## Test
+
+    $ component install -d
+    $ component build -d
+    $ open test/index.html
+
 ## License
 
 (The MIT License)

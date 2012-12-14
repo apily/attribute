@@ -11,9 +11,11 @@
   ],
   "dependencies": {
     "component/emitter": "*",
-    "component/each": "*",
+    "component/each": "*"
   },
-  "development": {},
+  "development": {
+    "component/assert": "*"
+  },
   "scripts": [
     "index.js"
   ],

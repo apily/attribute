@@ -25,7 +25,7 @@ module.exports = Attribute;
  * Mixin emitter.
  */
 
-Emitter(exports);
+Emitter(Attribute.prototype);
 
 /**
  * Initialize a new `Attribute`.
@@ -56,14 +56,14 @@ function mixin(obj) {
  * get
  * Get the attribute value.
  *
- * @param {String} name
+ * @param {String} attribute
  * @return {Any}
  * @api public
  */
 
-Attribute.prototype.get = function(name) {
+Attribute.prototype.get = function(attribute) {
   this._attributes = this._attributes || {};
-  return this._attributes[name];
+  return this._attributes[attribute];
 };
 
 /**
@@ -77,20 +77,20 @@ Attribute.prototype.get = function(name) {
  */
 
 Attribute.prototype.set = function(name_or_obj, value) {
-  var serlf = this;
+  var self = this;
   var name;
   var attributes;
   this._attributes = this._attributes || {};
   if (typeof name_or_obj === 'string') {
     name = name_or_obj;
-    set(this, name, value);
+    _set(self, name, value);
   } else {
     attributes = name_or_obj;
     each(attributes, function(name, value) {
       _set(self, name, value);
     });
   }
-  this.emit('change');
+  self.emit('change', self);
   return this;
 };
 
