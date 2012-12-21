@@ -16,18 +16,16 @@ Attribute setter/getter component.
 
 ### Attribute(obj)
 
-  The `Attribute` must be used as a mixin.  
-  A "plain" object may gain Attribute capabilities,  
-  or you may extend an existing prototype.  
-  `Attribute`-d objects become [Emitters](https://github.com/component/emitter).  
+  The `Attribute` must be used as an object mixin (or a prototype mixin).
+  Objects that gain `Attribute` capabilities become [Emitters](https://github.com/component/emitter).  
 
   As a mixin:
 
 ```js
 var Attribute = require('attribute');
 var user = { id: '007' };
-Attribute(user);
 
+Attribute(user);
 user.set('name', 'James');
 ```
 
@@ -35,19 +33,23 @@ user.set('name', 'James');
 
 ```js
 var Attribute = require('attribute');
+var User = function(id){ this.id = id; };
+var user = new User('007');
+
 Attribute(User.prototype);
+user.set('name', 'James');
 ```
 
-### Attribute#get(attribute)
+### Attribute#get(name:String)
 
-  Return `attribute` value.
+  Return the value of the attribute `name`.
 
-### Attribute#set(name_or_obj, value)
+### Attribute#set(name:String|obj:Object, value:*)
 
-  Set `name / value` attribute pair.  
+  Set `name / value` attribute pair.
   If an object is passed, set all the `name / value` pairs.  
   Emit `change` event.  
-  Emit `chage:[attribute]` event for each attribute setted.  
+  Emit `chage:[name]` event for each attribute setted.
 
 ## License
 
