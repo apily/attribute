@@ -5,11 +5,13 @@
   "maintainers": [
     {
       "name": "Enrico Marino",
-      "email": "enrico.marino@email.com"
+      "email": "enrico.marino@email.com",
+      "url": "http://onirame.com"
     },
     {
       "name": "Federico Spini",
-      "email": "federico.spini@gmail.com"
+      "email": "federico.spini@gmail.com",
+      "url": "http://federicospini.com"
     }
   ],
   "main": "index.js",
