@@ -151,7 +151,6 @@ Attribute.prototype.set_all = function(values, options) {
   return this;
 };
 
-
 /*
  * has
  * Return `true` if attributes contains `key`, `false` otherwise.
@@ -163,5 +162,5 @@ Attribute.prototype.set_all = function(values, options) {
 
 Attribute.prototype.has = function(key) {
   this._attributes = this._attributes || {};
-  return this._attributes[key] !== undefined;
+  return this._attributes[key] != null;
 };
