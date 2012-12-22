@@ -70,6 +70,10 @@ user.set('name', 'James');
   emit `delete:[key]` event.
   Return `this` for chaining.
 
+### Attribute#has(key:String)
+
+  Return `true` if the attribute `key` is present,  
+  `false` otherwise.
 
 ## License
 
