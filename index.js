@@ -150,3 +150,18 @@ Attribute.prototype.set_all = function(values, options) {
 
   return this;
 };
+
+
+/*
+ * has
+ * Return `true` if attributes contains `key`, `false` otherwise.
+ *
+ * @param {String} key key
+ * @return {Boolean} `true` if attributes contains `key`, `false` otherwise.
+ * @api public
+ */
+
+Attribute.prototype.has = function(key) {
+  this._attributes = this._attributes || {};
+  return this._attributes[key] !== undefined;
+};
