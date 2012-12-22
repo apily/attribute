@@ -151,6 +151,36 @@ Attribute.prototype.set_all = function(values, options) {
   return this;
 };
 
+
+/*
+ * del
+ * Delete attribute `key`.
+ *
+ * @param {String} key key
+ * @param {Object} options options
+ *   @param {Boolean} [options.silent]
+ * @return {Attribute} this, for chaining.
+ * @api public
+ */
+
+Attribute.prototype.del = function(key, options) {
+  this._attributes = this._attributes || {};
+
+  var attributes = this._attributes;
+  var silent = options && options.silent;
+  var value = attributes[key];
+  var present = value != null;
+
+  if (present) {
+    delete attributes[key];
+  }
+  if (present && !silent) {
+    this.emit('delete:' + key, value, this);
+  }
+
+  return this;
+};
+
 /*
  * has
  * Return `true` if attributes contains `key`, `false` otherwise.
