@@ -63,6 +63,13 @@ user.set('name', 'James');
   emit `change` event.  
   Return `this` for chaining.
 
+### Attribute#del(key:String)
+
+  Delete the attribute `key`.
+  If the attribute has been removed:  
+  emit `delete:[key]` event.
+  Return `this` for chaining.
+
 
 ## License
 
