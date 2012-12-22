@@ -16,7 +16,7 @@ Attribute setter/getter component.
 
 ### Attribute(obj)
 
-  The `Attribute` must be used as an object mixin (or a prototype mixin).
+  The `Attribute` must be used as an object mixin (or a prototype mixin).  
   Objects that gain `Attribute` capabilities become [Emitters](https://github.com/component/emitter).  
 
   As a mixin:
@@ -44,12 +44,25 @@ user.set('name', 'James');
 
   Return the value of the attribute `name`.
 
-### Attribute#set(name:String|obj:Object, value:*)
+### Attribute#set(key:String, value:*, options:Object)
 
-  Set `name / value` attribute pair.
-  If an object is passed, set all the `name / value` pairs.  
-  Emit `change` event.  
-  Emit `chage:[name]` event for each attribute setted.
+  Set the attribute [`key`] to [`value`].  
+  If `key` is an `Object` of values to set:  
+  call `set_all`.  
+  If the value is changed and `options.silent` is `true`:  
+  emit `chage:[key]` event,  
+  emit `change` event.  
+  Return `this` for chaining.
+
+### Attribute#set_all(values:Object, options:Object)
+
+  Set the attribute [`key`] to [`value`].  
+  If `options.silent` is `true`:  
+  emit `chage:[key]` event for each changed value.  
+  If at least one of the value is changed:
+  emit `change` event.  
+  Return `this` for chaining.
+
 
 ## License
 
