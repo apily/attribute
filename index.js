@@ -8,26 +8,25 @@
  * @licence MIT
  */
 
-/**
+/*
  * Module dependencies.
  */
 
 var Emitter = require('emitter');
-var each = require('each');
 
-/**
+/*
  * Expose `Attribute`.
  */
 
 module.exports = Attribute;
 
-/**
+/*
  * Mixin emitter.
  */
 
 Emitter(Attribute.prototype);
 
-/**
+/*
  * Initialize a new `Attribute`.
  *
  * @api public
@@ -37,7 +36,7 @@ function Attribute(obj) {
   if (obj) return mixin(obj);
 }
 
-/**
+/*
  * Mixin the Attribute properties.
  *
  * @param {Object} obj
@@ -46,65 +45,108 @@ function Attribute(obj) {
  */
 
 function mixin(obj) {
-  for (var key in Attribute.prototype) {
-    obj[key] = Attribute.prototype[key];
+  var proto = Attribute.prototype;
+  var key;
+
+  for (key in proto) {
+    obj[key] = proto[key];
   }
+
   return obj;
 }
 
-/**
+/*
  * get
  * Get the attribute value.
  *
- * @param {String} attribute
+ * @param {String} key attribute name
  * @return {Any}
  * @api public
  */
 
-Attribute.prototype.get = function(attribute) {
+Attribute.prototype.get = function(key) {
   this._attributes = this._attributes || {};
-  return this._attributes[attribute];
+  return this._attributes[key];
 };
 
-/**
+/*
  * set
- * Set the attribute[s] value[s].
+ * Set the attribute value.
  *
- * @param {String|Object} name_or_obj
- * @param {Any} value
- * @return {Object} this
+ * @param {String} key attribute name
+ * @param {*} value attribute value
+ * @param {Object} options options
+ *   @param {Boolean} [options.silent]
+ * @return {Object} this, for chaining
  * @api public
  */
 
-Attribute.prototype.set = function(name_or_obj, value) {
-  var self = this;
-  var name;
-  var attributes;
+Attribute.prototype.set = function(key, value, options) {
   this._attributes = this._attributes || {};
-  if (typeof name_or_obj === 'string') {
-    name = name_or_obj;
-    _set(self, name, value);
-  } else {
-    attributes = name_or_obj;
-    each(attributes, function(name, value) {
-      _set(self, name, value);
-    });
+  
+  if (key == null) {
+    return this;
   }
-  self.emit('change', self);
+
+  var attributes = this._attributes;
+  var silent = options && options.silent;
+  var previous = attributes[key];
+  var changed = previous !== value;
+
+  if (changed) {
+    attributes[key] = value;
+  }
+  if (changed && !silent) {
+    this.emit('change:' + key, value, previous);
+    this.emit('change', this);
+  }
+
   return this;
 };
 
-/**
- * _set
- * Actually modify the attribute value.
+/*
+ * set_all
+ * Set the attribute values.
  *
- * @param {Object} obj
- * @param {String} name
- * @param {Any} value
+ * @param {Object} values attribute values
+ * @param {Object} options options
+ *   @param {Boolean} [options.silent]
+ * @return {Object} this, for chaining
  * @api public
  */
 
-function _set(obj, name, value) {
-  obj._attributes[name] = value;
-  obj.emit('change:' + name, obj);
-}
+Attribute.prototype.set_all = function(values, options) {
+  this._attributes = this._attributes || {};
+  
+  if (key == null) {
+    return this;
+  }
+
+  var silent = options && options.silent;
+  var attributes = this._attributes;
+  var key;
+  var value;
+  var previous;
+  var changed;
+  var emitted;
+  
+  for (key in values) {
+    previous = attributes[key];
+    value = values[key];    
+    changed = previous !== value;
+
+    if (changed) {
+      attributes[key] = value;
+    }
+    if (changed && !silent) {
+      this.emit('change:' + key, value, previous);
+      emitted = true;
+    }
+  }
+
+  if (emitted) {
+    this.emit('change', this);
+  }
+
+  return this;
+};
