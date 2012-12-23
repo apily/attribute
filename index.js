@@ -87,17 +87,21 @@ Attribute.prototype.set = function(key, value, options) {
   if (key == null) {
     return this;
   }
+  if (typeof key === 'object') {
+    return this.set_all(key, value);
+  }
 
   var attributes = this._attributes;
   var silent = options && options.silent;
   var previous = attributes[key];
-  var changed = previous !== value;
+  var created = !(key in attributes);
+  var changed = created || previous !== value;
 
   if (changed) {
     attributes[key] = value;
   }
   if (changed && !silent) {
-    this.emit('change:' + key, value, previous);
+    this.emit('change:' + key, this, value, previous);
     this.emit('change', this);
   }
 
@@ -118,7 +122,7 @@ Attribute.prototype.set = function(key, value, options) {
 Attribute.prototype.set_all = function(values, options) {
   this._attributes = this._attributes || {};
   
-  if (key == null) {
+  if (values == null) {
     return this;
   }
 
@@ -128,18 +132,20 @@ Attribute.prototype.set_all = function(values, options) {
   var value;
   var previous;
   var changed;
+  var created;
   var emitted;
   
   for (key in values) {
     previous = attributes[key];
     value = values[key];    
-    changed = previous !== value;
+    created = !(key in attributes);
+    changed = created || previous !== value;
 
     if (changed) {
       attributes[key] = value;
     }
     if (changed && !silent) {
-      this.emit('change:' + key, value, previous);
+      this.emit('change:' + key, this, value, previous);
       emitted = true;
     }
   }
@@ -175,7 +181,7 @@ Attribute.prototype.del = function(key, options) {
     delete attributes[key];
   }
   if (present && !silent) {
-    this.emit('delete:' + key, value, this);
+    this.emit('delete:' + key, this, value);
   }
 
   return this;

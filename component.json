@@ -10,8 +10,7 @@
     "event"
   ],
   "dependencies": {
-    "component/emitter": "*",
-    "component/each": "*"
+    "component/emitter": "*"
   },
   "development": {
     "component/assert": "*"

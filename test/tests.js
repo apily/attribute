@@ -93,9 +93,9 @@ describe('Attribute', function() {
       });
 
       it('should emit `change:[name]` when pass `name` and `value`', function(done) {
-        user.on('change:name', function(changed_user) {
-          assert(changed_user.id === '007');
-          assert(changed_user.get('name') === me.name);
+        user.on('change:name', function(user, value, previous) {
+          assert(user.id === '007');
+          assert(user.get('name') === me.name);
           done();
         });
 
@@ -103,9 +103,9 @@ describe('Attribute', function() {
       });
 
       it('should emit `change:[name]` value to property `name` when pass only a `name` string', function(done) {
-        user.on('change:name', function(changed_user) {
-          assert(changed_user.id === '007');
-          assert(changed_user.get('name') === undefined);
+        user.on('change:name', function(user, value, previous) {
+          assert(user.id === '007');
+          assert(user.get('name') === undefined);
           done();
         });
 
@@ -144,9 +144,9 @@ describe('Attribute', function() {
       });
 
       it('should emit `change` event when pass `name` and `value`', function(done) {
-        user.on('change', function(changed_user) {
-          assert(changed_user.id === '007');
-          assert(changed_user.get('name') === me.name);
+        user.on('change', function(user) {
+          assert(user.id === '007');
+          assert(user.get('name') === me.name);
           done();
         });
 
@@ -154,9 +154,9 @@ describe('Attribute', function() {
       });
 
       it('should emit `change` (only once) when pass an abject', function(done) {
-        user.on('change', function(changed_user) {
-          assert(changed_user.id === '007');
-          check_user(changed_user, me);
+        user.on('change', function(user) {
+          assert(user.id === '007');
+          check_user(user, me);
           done();
         });
 
