@@ -1,5 +1,5 @@
 {
-  "name": "attribute-component",
+  "name": "component-mvc-attribute",
   "description": "Attribute setter/getter component",
   "version": "0.0.1",
   "maintainers": [
