@@ -3,12 +3,7 @@
   "repo": "apily/attribute",
   "description": "Attribute setter/getter component",
   "version": "0.0.1",
-  "keywords": [
-    "model",
-    "attribute",
-    "change",
-    "event"
-  ],
+  "keywords": ["model", "attribute", "change", "event"],
   "dependencies": {
     "component/emitter": "*"
   },

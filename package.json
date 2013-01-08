@@ -5,20 +5,18 @@
   "maintainers": [
     {
       "name": "Enrico Marino",
-      "email": "enrico.marino@email.com",
       "url": "http://onirame.com"
     },
     {
       "name": "Federico Spini",
-      "email": "federico.spini@gmail.com",
       "url": "http://federicospini.com"
     }
   ],
   "main": "index.js",
-  "homepage": "https://github.com/apily/attribute",
+  "homepage": "https://github.com/component-mvc/attribute",
   "repository": {
     "type": "git",
-    "url": "git://github.com/apily/attribute.git"
+    "url": "git://github.com/component-mvc/attribute.git"
   },
   "main": "index.js",
   "engines": {
