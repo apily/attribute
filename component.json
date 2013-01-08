@@ -1,6 +1,6 @@
 {
   "name": "attribute",
-  "repo": "apily/attribute",
+  "repo": "component-mvc/attribute",
   "description": "Attribute setter/getter component",
   "version": "0.0.1",
   "keywords": ["model", "attribute", "change", "event"],
