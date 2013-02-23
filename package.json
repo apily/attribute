@@ -1,5 +1,5 @@
 {
-  "name": "component-mvc-attribute",
+  "name": "apily-attribute",
   "description": "Attribute setter/getter component",
   "version": "0.0.1",
   "maintainers": [
@@ -13,10 +13,10 @@
     }
   ],
   "main": "index.js",
-  "homepage": "https://github.com/component-mvc/attribute",
+  "homepage": "https://github.com/apily/attribute",
   "repository": {
     "type": "git",
-    "url": "git://github.com/component-mvc/attribute.git"
+    "url": "git://github.com/apily/attribute.git"
   },
   "main": "index.js",
   "engines": {
